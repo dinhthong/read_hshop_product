@@ -1,0 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace product_filter
+{
+    public partial class Form1 : Form
+    {
+        string strStart;
+        string strEnd;
+        string 
+        int index;
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        public static string getBetween(string strSource, string strStart, string strEnd)
+        {
+            int Start, End;
+            if (strSource.Contains(strStart) && strSource.Contains(strEnd))
+            {
+                Start = strSource.IndexOf(strStart, 0) + strStart.Length;
+                End = strSource.IndexOf(strEnd, Start);
+                return strSource.Substring(Start, End - Start);
+            }
+            else
+            {
+                return "";
+            }
+        }
+        private void bt_do_Click(object sender, EventArgs e)
+        {
+            {
+                string text_read = tb_input.Text;
+                strStart = "<a href=\"/products/";
+                strEnd = "₫</em>";
+                for (int i = 0; i <= 1; i++)
+                {
+                  product_temp=getBetween(text_read, strStart, strEnd);
+                    tb_result.Text += product_temp;
+                 tb_result.Text += Environment.NewLine;
+                    index = text_read.IndexOf(strEnd) + strEnd.Length;
+                    text_read = text_read.Substring(index);
+                }
+
+            }
+        }
+    }
+}
